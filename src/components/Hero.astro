@@ -1,0 +1,44 @@
+---
+---
+
+<section class="relative min-h-screen flex items-center justify-center px-6">
+    
+    <div class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0a_70%)]"></div>
+  <!-- subtle glow -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-[700px] h-[700px] bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 opacity-20 blur-3xl rounded-full"></div>
+    </div>
+
+  <div class="relative max-w-3xl text-center">
+    <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-tight opacity-0 animate-fadeUp">
+      Fast. Clean. Intentional.
+    </h1>
+
+    <p class="mt-6 text-lg text-zinc-400 opacity-0 animate-fadeUp delay-200">
+      Building SaaS, tools, and security-focused projects with speed and intention.
+    </p>
+  </div>
+</section>
+
+
+<style>
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+</style>

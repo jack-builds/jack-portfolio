@@ -1,0 +1,30 @@
+---
+---
+
+<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
+
+    <div class="text-sm text-white/80">
+      Jack Warkentin
+    </div>
+
+    <nav class="flex gap-6 text-sm text-zinc-400">
+      <a href="#work" class="hover:text-white transition-colors">Work</a>
+      <a href="#about" class="hover:text-white transition-colors">About</a>
+      <a href="https://github.com/" class="hover:text-white transition-colors">GitHub</a>
+    </nav>
+
+  </div>
+</header>
+
+<script is:inline>
+  const nav = document.getElementById("nav");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      nav.classList.add("bg-black/40", "backdrop-blur-md", "border-b", "border-white/10");
+    } else {
+      nav.classList.remove("bg-black/40", "backdrop-blur-md", "border-b", "border-white/10");
+    }
+  });
+</script>
