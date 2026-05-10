@@ -2,6 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
 
 body::before {
   content: "";
@@ -11,4 +14,8 @@ body::before {
   opacity: 0.03;
   pointer-events: none;
   z-index: 50;
+}
+
+body {
+  font-family: "Inter", sans-serif;
 }
