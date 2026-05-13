@@ -1,7 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
-import { projects } from "../data/projects";
----
+
+const projects = await getCollection("work");
+
+const featuredProjects = projects.filter(
+  (project) => project.data.featured
+);
 ---
 
 <section
@@ -10,17 +15,31 @@ import { projects } from "../data/projects";
 >
   <div class="mb-16">
     <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">
-      Selected Work
+      Featured Work
     </p>
 
-    <h2 class="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
-      Projects that matter.
+    <h2 class="mt-4 text-3xl md:text-5xl font-medium tracking-tight">
+      Selected projects and experiments.
     </h2>
   </div>
 
   <div class="grid gap-6">
-    {projects.map((project) => (
-      <ProjectCard {...project} />
+    {featuredProjects.map((project) => (
+      <ProjectCard
+        title={project.data.title}
+        description={project.data.description}
+        stack={project.data.tags.join(" · ").toUpperCase()}
+        slug={project.id}
+      />
     ))}
+  </div>
+
+  <div class="mt-12">
+    <a
+      href="/work"
+      class="inline-flex items-center text-sm text-zinc-400 hover:text-white transition-colors"
+    >
+      View all projects →
+    </a>
   </div>
 </section>

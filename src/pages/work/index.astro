@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Footer from "../../components/Footer.astro";
+
+const projects = await getCollection("work");
+
+const sortedProjects = projects.sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() -
+    new Date(a.data.date).getTime()
+);
+
+// collect unique tags
+const allTags = [
+  ...new Set(
+    projects.flatMap((project) => project.data.tags)
+  ),
+];
+---
+
+<BaseLayout>
+  <Navbar />
+
+  <main class="mx-auto max-w-5xl px-6 py-32">
+
+    <!-- Header -->
+    <section class="mb-16">
+      <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">
+        Work Archive
+      </p>
+
+      <h1 class="mt-4 text-4xl md:text-6xl font-medium tracking-tight leading-[0.95]">
+        Projects, experiments, and build logs.
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg text-zinc-400 leading-relaxed">
+        A collection of development projects, systems, experiments,
+        and ideas documented over time.
+      </p>
+    </section>
+
+    <!-- Search placeholder -->
+    <div class="mb-8">
+      <input
+        type="text"
+        placeholder="Search projects..."
+        class="w-full rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white placeholder:text-zinc-500 outline-none transition-colors focus:border-white/20"
+      />
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-12 flex flex-wrap gap-3">
+      {allTags.map((tag) => (
+        <div
+          class="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-wide text-zinc-400"
+        >
+          {tag}
+        </div>
+      ))}
+    </div>
+
+    <!-- Projects -->
+    <div class="grid gap-6">
+      {sortedProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          stack={project.data.tags.join(" · ").toUpperCase()}
+          slug={project.id}
+        />
+      ))}
+    </div>
+
+  </main>
+  <Footer />
+</BaseLayout>

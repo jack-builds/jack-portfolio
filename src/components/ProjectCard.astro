@@ -1,10 +1,9 @@
 ---
-const { title, description, stack, link } = Astro.props;
+const { title, description, stack, slug } = Astro.props;
 ---
 
 <a
-  href={link}
-  target="_blank"
+  href={`/work/${slug}`}
   class="group block rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-1"
 >
   <div class="flex items-start justify-between">

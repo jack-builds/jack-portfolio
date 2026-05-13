@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const workEntries = await getCollection("work");
+
+  return workEntries.map((entry) => ({
+    params: {
+      slug: entry.id,
+    },
+    props: {
+      entry,
+    },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout>
+  <main class="mx-auto max-w-3xl px-6 py-32">
+    <p class="text-sm text-zinc-500">
+      {entry.data.date}
+    </p>
+
+    <h1 class="mt-4 text-5xl font-medium tracking-tight">
+      {entry.data.title}
+    </h1>
+
+    <p class="mt-6 text-lg text-zinc-400">
+      {entry.data.description}
+    </p>
+
+    <article class="prose prose-invert mt-16">
+      <Content />
+    </article>
+  </main>
+</BaseLayout>
