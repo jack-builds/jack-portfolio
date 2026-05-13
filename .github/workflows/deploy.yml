@@ -16,6 +16,12 @@ jobs:
     steps:
       - name: Checkout your repository
         uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22  # <--- This is the magic fix
+
       - name: Install, build, and upload your site
         uses: withastro/action@v3
 
